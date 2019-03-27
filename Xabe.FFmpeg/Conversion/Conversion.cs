@@ -49,7 +49,9 @@ namespace Xabe.FFmpeg
                 builder.Append(BuildMap());
                 builder.Append(string.Join(string.Empty, _parameters));
                 builder.Append(_output);
-                return builder.ToString();
+                string r = builder.ToString();
+                Debug.Write(r);
+                return r;
             }
         }
 

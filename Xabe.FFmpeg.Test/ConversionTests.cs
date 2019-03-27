@@ -47,6 +47,20 @@ namespace Xabe.FFmpeg.Test
         }
 
         [Fact]
+        public async Task CaptureScreenTest()
+        {
+            string output = Path.Combine(Path.GetTempPath(), Guid.NewGuid() + FileExtensions.Mkv);
+
+            var cancellationToken = new CancellationTokenSource();
+            var conversionTask = Conversion.CaptureScreen(output)
+                                       .Start(cancellationToken.Token);
+            //Trzeba jakoś inaczej zamknąć proces. Bez ubijania go
+            cancellationToken.CancelAfter(2000);
+
+            await Assert.ThrowsAnyAsync<OperationCanceledException>(async () => await conversionTask.ConfigureAwait(false)).ConfigureAwait(false);
+        }
+
+        [Fact]
         public async Task SetVideoCodecTest()
         {
             string output = Path.Combine(Path.GetTempPath(), Guid.NewGuid() + FileExtensions.Mp4);

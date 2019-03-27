@@ -358,6 +358,20 @@ namespace Xabe.FFmpeg
             return conversion.Start();
         }
 
+        /// <summary>
+        ///     Prepare screen capturing conversion object. 
+        /// </summary>
+        /// <param name="outputFilePath">Capturing output</param>
+        /// <returns>IConversion object</returns>
+        public static IConversion CaptureScreen(string outputFilePath)
+        {
+            IConversion conversion = New()
+                                     .AddParameter("-f gdigrab")
+                                     .AddParameter("-i desktop")
+                                     .SetOutput(outputFilePath);
+
+            return conversion;
+        }
 
         /// <summary>
         ///     Convert one file to another with destination format.
