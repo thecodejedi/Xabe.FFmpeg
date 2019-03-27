@@ -7,6 +7,7 @@ namespace Xabe.FFmpeg.Test
     {
         internal static readonly string PngSample = GetResourceFilePath("watermark.png");
         internal static readonly string Mp4WithAudio = GetResourceFilePath("input.mp4");
+        internal static readonly string Webm = GetResourceFilePath("sample1.webm");
         internal static readonly string Mp3 = GetResourceFilePath("audio.mp3");
         internal static readonly string Mp4 = GetResourceFilePath("mute.mp4");
         internal static readonly string MkvWithAudio = GetResourceFilePath("SampleVideo_360x240_1mb.mkv");

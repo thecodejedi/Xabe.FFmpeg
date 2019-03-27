@@ -204,6 +204,17 @@ namespace Xabe.FFmpeg.Test
         }
 
         [Fact]
+        public async Task SnapshotWebmTest()
+        {
+            string output = Path.Combine(Path.GetTempPath(), Guid.NewGuid() + FileExtensions.Png);
+            IConversionResult result = await Conversion.Snapshot(Resources.Webm, output, TimeSpan.FromSeconds(3))
+                                                       .Start().ConfigureAwait(false);
+            
+            Assert.True(result.Success);
+            Assert.True(File.Exists(output));
+        }
+
+        [Fact]
         public async Task SplitVideoTest()
         {
             string output = Path.ChangeExtension(Path.GetTempFileName(), FileExtensions.Mp4);
