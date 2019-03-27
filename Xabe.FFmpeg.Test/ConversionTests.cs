@@ -54,7 +54,7 @@ namespace Xabe.FFmpeg.Test
             var cancellationToken = new CancellationTokenSource();
             var conversionTask = Conversion.CaptureScreen(output)
                                        .Start(cancellationToken.Token);
-            //Trzeba jakoś inaczej zamknąć proces. Bez ubijania go
+            //Required: better idea to close process using signals (without killing them)
             cancellationToken.CancelAfter(2000);
 
             await Assert.ThrowsAnyAsync<OperationCanceledException>(async () => await conversionTask.ConfigureAwait(false)).ConfigureAwait(false);
